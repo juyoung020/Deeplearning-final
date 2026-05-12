@@ -10,4 +10,5 @@
   - --go2-physics-fallback-checkpoint: /home/kaurml/... →
   .pretrained_checkpoints/.../checkpoint.pt
 
+아이작 랩 버전이 명시돼있지 않아서 다른 버전으로 수 많은 에러를 겪었는데
 아이작 랩을 2.3.0으로 버전 업그레이드 하고부터 에러가 안나고 잘됐습니다.
