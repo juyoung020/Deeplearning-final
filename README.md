@@ -21,6 +21,12 @@ WASD 키보드 입력으로 로봇을 직접 조종하며 동작을 확인하는
 - Isaac Sim / IsaacLab 설치 및 실행 확인
 - WASD 시뮬레이터 실행 해보기
 
+### [2주차 — Notion 페이지](https://plausible-hallway-e4f.notion.site/Week-2-352454b08de281a88c8dfce2651e080a)
+> 📝 [회의록 #2 (2026-05-17)](https://plausible-hallway-e4f.notion.site/2-2026-05-17-363454b08de281b589e3fd2c8d051d1d)
+- 자연어 명령을 velocity command로 변환하는 rule-based 파서 구현
+- env.step()에서 velocity command 지속 유지 구현
+- 공용 컴퓨터에서 시뮬레이터 실행 및 시연
+
 ## 환경
 
 - NVIDIA Isaac Sim
