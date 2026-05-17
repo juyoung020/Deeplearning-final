@@ -1,0 +1,14 @@
+ go2_physics_teleop.py — WASDVelocityKeyboard._mapping ___
+  플레이스홀더(placeholder) 채움:
+  - W → [go2_physics_lin_vel, 0.0, 0.0] (전진)
+  - S → [-go2_physics_backward_lin_vel, 0.0, 0.0] (후진)
+  - A → [0.0, 0.0, go2_physics_ang_vel] (좌회전)
+  - D → [0.0, 0.0, -go2_physics_ang_vel] (우회전)
+
+  demo.py — 경로 기본값 수정:
+  - --isaaclab-root: /home/kaurml/IsaacLab → /home/juyoung/IsaacLab
+  - --go2-physics-fallback-checkpoint: /home/kaurml/... →
+  .pretrained_checkpoints/.../checkpoint.pt
+
+아이작 랩 버전이 명시돼있지 않아서 다른 버전으로 수 많은 에러를 겪었는데
+아이작 랩을 2.3.0으로 버전 업그레이드 하고부터 에러가 안나고 잘됐습니다.
