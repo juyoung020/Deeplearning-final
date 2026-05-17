@@ -1954,24 +1954,10 @@ def _legacy_rsl_rl_model_to_mlp_state(model_state, current_state, prefix, torch)
 
 def load_rsl_rl_checkpoint_compatible(runner, checkpoint_path, torch):  ###
     checkpoint = torch.load(checkpoint_path, weights_only=False, map_location=runner.device)  ###
-    if "actor_state_dict" in checkpoint:  ###
+    if "model_state_dict" in checkpoint or "actor_state_dict" in checkpoint:  ###
         runner.load(checkpoint_path)  ###
         return  ###
-    model_state = checkpoint.get("model_state_dict") if isinstance(checkpoint, dict) else None  ###
-    if not isinstance(model_state, dict):  ###
-        raise KeyError("actor_state_dict")  ###
-    actor_state = _legacy_rsl_rl_model_to_mlp_state(model_state, runner.alg.actor.state_dict(), "actor", torch)  ###
-    critic_state = _legacy_rsl_rl_model_to_mlp_state(model_state, runner.alg.critic.state_dict(), "critic", torch)  ###
-    missing_actor, unexpected_actor = runner.alg.actor.load_state_dict(actor_state, strict=False)  ###
-    missing_critic, unexpected_critic = runner.alg.critic.load_state_dict(critic_state, strict=False)  ###
-    if missing_actor or unexpected_actor or missing_critic or unexpected_critic:  ###
-        print(  ###
-            "[WARN] Loaded legacy RSL-RL checkpoint with non-strict key mapping: "  ###
-            f"missing_actor={list(missing_actor)}, unexpected_actor={list(unexpected_actor)}, "  ###
-            f"missing_critic={list(missing_critic)}, unexpected_critic={list(unexpected_critic)}"  ###
-        )  ###
-    if isinstance(checkpoint.get("iter"), int):  ###
-        runner.current_learning_iteration = checkpoint["iter"]  ###
+    raise KeyError("model_state_dict")  ###
     print("[INFO] Loaded legacy RSL-RL checkpoint format through compatibility mapper.")  ###
 
 
@@ -2039,7 +2025,11 @@ def run_go2_physics_episode(episode, args, repo_root):
     except ModuleNotFoundError:  ###
         from isaaclab.utils.pretrained_checkpoint import get_published_pretrained_checkpoint  ###
     from isaaclab_rl.rsl_rl import RslRlVecEnvWrapper
-    from isaaclab_rl.rsl_rl import handle_deprecated_rsl_rl_cfg  ###
+    try:  ###
+        from isaaclab_rl.rsl_rl import handle_deprecated_rsl_rl_cfg  ###
+    except ImportError:  ###
+        def handle_deprecated_rsl_rl_cfg(cfg, version):  ###
+            return cfg  ###
     from isaaclab_tasks.utils.parse_cfg import parse_env_cfg
 
     env = None
