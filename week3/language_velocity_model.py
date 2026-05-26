@@ -231,6 +231,10 @@ class LanguageVelocityPredictor:
         tensor = self.predict_tensor(text)[0].detach().cpu().float()
         return tuple(float(value) for value in tensor.tolist())
 
+    def predict_batch(self, texts: list[str]) -> list[tuple[float, float, float]]:
+        tensors = self.predict_tensor(texts).detach().cpu().float()
+        return [tuple(float(v) for v in row.tolist()) for row in tensors]
+
 
 def format_velocity(velocity: Sequence[float]) -> str:
     return f"[{float(velocity[0]):+.4f}, {float(velocity[1]):+.4f}, {float(velocity[2]):+.4f}]"
