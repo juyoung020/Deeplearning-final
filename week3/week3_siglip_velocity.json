@@ -1,0 +1,67 @@
+{
+  "model_name": "google/siglip2-large-patch16-256",
+  "embedding_dim": 1024,
+  "hidden_dim": 128,
+  "num_layers": 1,
+  "dropout": 0.0,
+  "max_length": 64,
+  "normalize_embeddings": false,
+  "torch_dtype": null,
+  "device": "auto",
+  "seed": 7,
+  "batch_size": 11,
+  "training_steps": 1500,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0,
+  "grad_clip_norm": 1.0,
+  "cache_embeddings": true,
+  "print_every": 100,
+  "checkpoint_path": "checkpoints/language_velocity_mlp.pt",
+  "eval_path": "runs/week3_language_velocity_eval.json",
+  "dataset": [
+    {
+      "text": "move forward 25cm",
+      "target": [0.25, 0.0, 0.0]
+    },
+    {
+      "text": "move forward 50cm",
+      "target": [0.5, 0.0, 0.0]
+    },
+    {
+      "text": "move forward 75cm",
+      "target": [0.75, 0.0, 0.0]
+    },
+    {
+      "text": "move forward 1m",
+      "target": [1.0, 0.0, 0.0]
+    },
+    {
+      "text": "turn left 15 degree",
+      "target": [0.0, 0.0, 0.2617993877991494]
+    },
+    {
+      "text": "turn left 30 degree",
+      "target": [0.0, 0.0, 0.5235987755982988]
+    },
+    {
+      "text": "turn left 45 degree",
+      "target": [0.0, 0.0, 0.7853981633974483]
+    },
+    {
+      "text": "turn right 15 degree",
+      "target": [0.0, 0.0, -0.2617993877991494]
+    },
+    {
+      "text": "turn right 30 degree",
+      "target": [0.0, 0.0, -0.5235987755982988]
+    },
+    {
+      "text": "turn right 45 degree",
+      "target": [0.0, 0.0, -0.7853981633974483]
+    },
+    {
+      "text": "stop",
+      "target": [0.0, 0.0, 0.0]
+    }
+  ]
+}
