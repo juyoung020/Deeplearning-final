@@ -2195,6 +2195,10 @@ def run_go2_physics_episode(episode, args, repo_root):
             scripted_command = None
         language_commands_enabled = bool(getattr(args, "go2_physics_language_commands", True))  # ###2
         language_model_checkpoint = getattr(args, "go2_physics_language_model_checkpoint", None)
+        if not language_model_checkpoint:
+            default = os.path.join(os.path.dirname(os.path.abspath(__file__)), "checkpoints", "language_velocity_mlp.pt")
+            if os.path.exists(default):
+                language_model_checkpoint = default
         if language_commands_enabled and scripted_command is None and gt_follower is None:  # ###2
             control_dt = control_dt_from_env(env) or getattr(args, "_go2_physics_control_dt", 0.02)  # ###2
             if language_model_checkpoint:

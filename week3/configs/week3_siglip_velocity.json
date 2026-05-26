@@ -9,8 +9,8 @@
   "torch_dtype": null,
   "device": "auto",
   "seed": 7,
-  "batch_size": 11,
-  "training_steps": 2000,
+  "batch_size": 32,
+  "training_steps": 3000,
   "learning_rate": 0.001,
   "weight_decay": 1e-4,
   "grad_clip_norm": 1.0,
@@ -21,49 +21,65 @@
   "checkpoint_path": "checkpoints/language_velocity_mlp.pt",
   "eval_path": "runs/week3_language_velocity_eval.json",
   "dataset": [
-    {
-      "text": "move forward 25cm",
-      "target": [0.25, 0.0, 0.0]
-    },
-    {
-      "text": "move forward 50cm",
-      "target": [0.5, 0.0, 0.0]
-    },
-    {
-      "text": "move forward 75cm",
-      "target": [0.75, 0.0, 0.0]
-    },
-    {
-      "text": "move forward 1m",
-      "target": [1.0, 0.0, 0.0]
-    },
-    {
-      "text": "turn left 15 degree",
-      "target": [0.0, 0.0, 0.2617993877991494]
-    },
-    {
-      "text": "turn left 30 degree",
-      "target": [0.0, 0.0, 0.5235987755982988]
-    },
-    {
-      "text": "turn left 45 degree",
-      "target": [0.0, 0.0, 0.7853981633974483]
-    },
-    {
-      "text": "turn right 15 degree",
-      "target": [0.0, 0.0, -0.2617993877991494]
-    },
-    {
-      "text": "turn right 30 degree",
-      "target": [0.0, 0.0, -0.5235987755982988]
-    },
-    {
-      "text": "turn right 45 degree",
-      "target": [0.0, 0.0, -0.7853981633974483]
-    },
-    {
-      "text": "stop",
-      "target": [0.0, 0.0, 0.0]
-    }
+    {"text": "move forward 25cm",           "target": [0.25, 0.0,  0.0]},
+    {"text": "go forward 25cm",             "target": [0.25, 0.0,  0.0]},
+    {"text": "walk forward 25 centimeters", "target": [0.25, 0.0,  0.0]},
+
+    {"text": "move forward 50cm",           "target": [0.5,  0.0,  0.0]},
+    {"text": "go forward 50cm",             "target": [0.5,  0.0,  0.0]},
+    {"text": "walk forward 50 centimeters", "target": [0.5,  0.0,  0.0]},
+    {"text": "advance 50cm",                "target": [0.5,  0.0,  0.0]},
+
+    {"text": "move forward 75cm",           "target": [0.75, 0.0,  0.0]},
+    {"text": "go forward 75cm",             "target": [0.75, 0.0,  0.0]},
+    {"text": "walk forward 75 centimeters", "target": [0.75, 0.0,  0.0]},
+
+    {"text": "move forward 1m",             "target": [1.0,  0.0,  0.0]},
+    {"text": "go forward 1 meter",          "target": [1.0,  0.0,  0.0]},
+    {"text": "walk forward 1 meter",        "target": [1.0,  0.0,  0.0]},
+    {"text": "advance 1 meter",             "target": [1.0,  0.0,  0.0]},
+
+    {"text": "move backward 25cm",           "target": [-0.25, 0.0,  0.0]},
+    {"text": "go backward 25cm",            "target": [-0.25, 0.0,  0.0]},
+    {"text": "reverse 25 centimeters",      "target": [-0.25, 0.0,  0.0]},
+
+    {"text": "move backward 50cm",          "target": [-0.5,  0.0,  0.0]},
+    {"text": "go backward 50cm",            "target": [-0.5,  0.0,  0.0]},
+    {"text": "reverse 50 centimeters",      "target": [-0.5,  0.0,  0.0]},
+    {"text": "back up 50cm",               "target": [-0.5,  0.0,  0.0]},
+
+    {"text": "move backward 75cm",          "target": [-0.75, 0.0,  0.0]},
+    {"text": "go backward 75cm",            "target": [-0.75, 0.0,  0.0]},
+
+    {"text": "move backward 1m",            "target": [-1.0,  0.0,  0.0]},
+    {"text": "go backward 1 meter",         "target": [-1.0,  0.0,  0.0]},
+    {"text": "reverse 1 meter",             "target": [-1.0,  0.0,  0.0]},
+
+    {"text": "turn left 15 degree",         "target": [0.0,  0.0,  0.2617993877991494]},
+    {"text": "rotate left 15 degrees",      "target": [0.0,  0.0,  0.2617993877991494]},
+
+    {"text": "turn left 30 degree",         "target": [0.0,  0.0,  0.5235987755982988]},
+    {"text": "rotate left 30 degrees",      "target": [0.0,  0.0,  0.5235987755982988]},
+    {"text": "spin left 30 degrees",        "target": [0.0,  0.0,  0.5235987755982988]},
+
+    {"text": "turn left 45 degree",         "target": [0.0,  0.0,  0.7853981633974483]},
+    {"text": "rotate left 45 degrees",      "target": [0.0,  0.0,  0.7853981633974483]},
+    {"text": "spin left 45 degrees",        "target": [0.0,  0.0,  0.7853981633974483]},
+
+    {"text": "turn right 15 degree",        "target": [0.0,  0.0, -0.2617993877991494]},
+    {"text": "rotate right 15 degrees",     "target": [0.0,  0.0, -0.2617993877991494]},
+
+    {"text": "turn right 30 degree",        "target": [0.0,  0.0, -0.5235987755982988]},
+    {"text": "rotate right 30 degrees",     "target": [0.0,  0.0, -0.5235987755982988]},
+    {"text": "spin right 30 degrees",       "target": [0.0,  0.0, -0.5235987755982988]},
+
+    {"text": "turn right 45 degree",        "target": [0.0,  0.0, -0.7853981633974483]},
+    {"text": "rotate right 45 degrees",     "target": [0.0,  0.0, -0.7853981633974483]},
+    {"text": "spin right 45 degrees",       "target": [0.0,  0.0, -0.7853981633974483]},
+
+    {"text": "stop",                        "target": [0.0,  0.0,  0.0]},
+    {"text": "halt",                        "target": [0.0,  0.0,  0.0]},
+    {"text": "stay",                        "target": [0.0,  0.0,  0.0]},
+    {"text": "don't move",                  "target": [0.0,  0.0,  0.0]}
   ]
 }
