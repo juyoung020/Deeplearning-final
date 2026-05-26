@@ -36,6 +36,8 @@ DEFAULT_CONFIG = {
     "learning_rate": 0.001,
     "weight_decay": 0.0,
     "grad_clip_norm": 1.0,
+    "lr_scheduler": "cosine",
+    "lr_min": 1e-5,
     "cache_embeddings": True,
     "print_every": 100,
     "checkpoint_path": "checkpoints/language_velocity_mlp.pt",
@@ -82,10 +84,14 @@ def evaluate(model: VelocityMLP, embeddings: torch.Tensor, targets: torch.Tensor
     with torch.inference_mode():
         predictions = model(embeddings)
         error = predictions - targets
+        abs_error = error.abs()
         metrics = {
             "mse": float(F.mse_loss(predictions, targets).item()),
-            "mae": float(error.abs().mean().item()),
-            "max_abs_error": float(error.abs().max().item()),
+            "mae": float(abs_error.mean().item()),
+            "max_abs_error": float(abs_error.max().item()),
+            "mae_vx": float(abs_error[:, 0].mean().item()),
+            "mae_vy": float(abs_error[:, 1].mean().item()),
+            "mae_yaw": float(abs_error[:, 2].mean().item()),
         }
     return metrics, predictions
 
@@ -133,6 +139,15 @@ def main() -> None:
         weight_decay=float(config["weight_decay"]),
     )
 
+    scheduler = None
+    if config.get("lr_scheduler") == "cosine":
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+            optimizer,
+            T_max=max(int(config["training_steps"]), 1),
+            eta_min=float(config.get("lr_min", 1e-5)),
+        )
+        print(f"[INFO] LR scheduler: CosineAnnealingLR (lr {config['learning_rate']} → {config.get('lr_min', 1e-5)})")
+
     cache_embeddings = bool(config["cache_embeddings"])
     all_embeddings = encode_all(encoder, texts) if cache_embeddings else None
     print(f"[INFO] Cache embeddings: {cache_embeddings}")
@@ -160,9 +175,12 @@ def main() -> None:
         if grad_clip_norm > 0:
             torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip_norm)
         optimizer.step()
+        if scheduler is not None:
+            scheduler.step()
 
         if step == 1 or step % print_every == 0 or step == training_steps:
-            print(f"[TRAIN] step={step:04d}/{training_steps} loss={loss.item():.8f}")
+            lr_now = optimizer.param_groups[0]["lr"]
+            print(f"[TRAIN] step={step:04d}/{training_steps} loss={loss.item():.8f} lr={lr_now:.2e}")
 
     if all_embeddings is None:
         all_embeddings = encode_all(encoder, texts)
@@ -182,6 +200,10 @@ def main() -> None:
     print(
         "[RESULT] "
         f"mse={metrics['mse']:.8f}, mae={metrics['mae']:.8f}, max_abs_error={metrics['max_abs_error']:.8f}"
+    )
+    print(
+        "[RESULT] per-axis MAE "
+        f"vx={metrics['mae_vx']:.6f}, vy={metrics['mae_vy']:.6f}, yaw={metrics['mae_yaw']:.6f}"
     )
 
     checkpoint_path = os.path.abspath(os.path.expanduser(config["checkpoint_path"]))
