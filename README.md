@@ -16,7 +16,7 @@ NVIDIA Isaac Sim과 IsaacLab을 활용하여 4족보행 로봇의 물리 기반 
 ## 주차별 계획
 
 ### [1주차 — Notion 페이지](https://plausible-hallway-e4f.notion.site/Week-1-Isaac-Lab-352454b08de281c18542f72adf82ec91)
-> 📝 [회의록 #1 (2026-05-02)](https://plausible-hallway-e4f.notion.site/352454b08de281cc90a8e3e0a9032a42)
+> 📝 [회의록 #1 (2026-05-02)](https://plausible-hallway-e4f.notion.site/1-2026-05-02-352454b08de281cc90a8e3e0a9032a42?source=copy_link)
 - 팀 전체 환경 셋업 및 기술 조사
 - Isaac Sim / IsaacLab 설치 및 실행 확인
 - WASD 시뮬레이터 실행 해보기
