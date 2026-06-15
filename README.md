@@ -33,6 +33,11 @@ NVIDIA Isaac Sim과 IsaacLab을 활용하여 4족보행 로봇의 물리 기반 
 - 학습 데이터 46개 구성 (forward / backward / turn / stop + paraphrase 확장)
 - 시뮬레이터 연동 및 학습 모델 자동 감지 버그 수정
 
+### [4주차 — Notion 페이지](https://plausible-hallway-e4f.notion.site/Week-4-5-VLN-37f454b08de281fcadc3ed0d3ed67359)
+- Qwen3-VL-2B + LoRA(q_proj·v_proj) 미세조정 — 이미지 2장 + 지시문 → 다음 행동 예측
+- 데이터 불균형(전진 67% · 정지 2%) 대응 — balance_power 재샘플링(균형형) · 정보·용량 ablation(정확도형) 두 갈래 병행 학습
+- IsaacSim closed-loop 평가 · W&B 손실곡선 기록 · 최종보고서/발표자료 작성
+
 ## 환경
 
 - NVIDIA Isaac Sim
