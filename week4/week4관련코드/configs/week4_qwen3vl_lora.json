@@ -1,0 +1,59 @@
+{
+  "training": {
+    "eval_generate_max_samples": 200, 
+    "num_workers": 2, 
+    "warmup_ratio": 0.03, 
+    "log_every": 10, 
+    "batch_size": 2, 
+    "epochs": 3, 
+    "eval_max_batches": null, 
+    "seed": 7, 
+    "lr": 0.0001, 
+    "scheduler": "cosine", 
+    "max_grad_norm": 1.0, 
+    "val_ratio": 0.1, 
+    "grad_accum_steps": 8, 
+    "weight_decay": 0.0, 
+    "save_every_steps": 200
+  }, 
+  "logging": {
+    "use_wandb": false, 
+    "wandb_project": "vlnverse-week4", 
+    "jsonl_log": "logs/train_log.jsonl", 
+    "wandb_run_name": "baseline"
+  }, 
+  "forced_val_split_json": null, 
+  "_comment": "Week 4 baseline: instruction + image history [I_{t-1}, I_t] -> Qwen3-VL-2B LoRA (q_proj, v_proj).", 
+  "dataset": {
+    "history_count": 1, 
+    "duplicate_first_when_missing_history": true, 
+    "history_stride": 1, 
+    "max_samples": null, 
+    "max_episodes": null, 
+    "include_terminal_stop": true, 
+    "include_trajectory_text": false, 
+    "max_image_count": 2, 
+    "trajectory_history_len": 4, 
+    "split_json": "data/VLNVerse_data/raw_data/final_splits/fine_train.json.gz", 
+    "image_size": 256, 
+    "dataset_root": "data/VLNVerse_data", 
+    "seed": 7
+  }, 
+  "output_dir": "outputs/week4/baseline", 
+  "model": {
+    "gradient_checkpointing": true, 
+    "dtype": "bf16", 
+    "model_name": "Qwen/Qwen3-VL-2B-Instruct", 
+    "device_map": null, 
+    "lora": {
+      "alpha": 32, 
+      "dropout": 0.05, 
+      "r": 16, 
+      "target_modules": [
+        "q_proj", 
+        "v_proj"
+      ]
+    }, 
+    "attn_implementation": null
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "_comment": "Ablation C (LoRA capacity): identical to baseline except LoRA target_modules expanded from {q_proj,v_proj} to all linear projections {q,k,v,o,gate,up,down}_proj, r kept at 16. Tests whether more trainable capacity helps val/macro accuracy or just increases overfitting. Same full data + 3 epochs + bs6xaccum3 as baseline for apples-to-apples comparison.",
+  "output_dir": "outputs/week4/ablation_lora_all_linear",
+  "forced_val_split_json": null,
+  "dataset": {
+    "dataset_root": "data/VLNVerse_data",
+    "split_json": "data/VLNVerse_data/raw_data/final_splits/fine_train.json.gz",
+    "image_size": 256,
+    "history_count": 1,
+    "history_stride": 1,
+    "max_image_count": 2,
+    "duplicate_first_when_missing_history": true,
+    "max_episodes": null,
+    "max_samples": null,
+    "include_terminal_stop": true,
+    "include_trajectory_text": false,
+    "trajectory_history_len": 4,
+    "seed": 7
+  },
+  "model": {
+    "model_name": "Qwen/Qwen3-VL-2B-Instruct",
+    "dtype": "bf16",
+    "device_map": null,
+    "gradient_checkpointing": true,
+    "attn_implementation": null,
+    "lora": {
+      "r": 16, "alpha": 32, "dropout": 0.05,
+      "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+    }
+  },
+  "training": {
+    "batch_size": 6, "grad_accum_steps": 3, "lr": 0.0001, "weight_decay": 0.0,
+    "scheduler": "cosine", "warmup_ratio": 0.03, "epochs": 3, "max_grad_norm": 1.0,
+    "log_every": 10, "seed": 7, "num_workers": 2, "val_ratio": 0.1,
+    "eval_max_batches": null, "eval_generate_max_samples": 200, "save_every_steps": 200
+  },
+  "logging": {
+    "use_wandb": false, "wandb_project": "vlnverse-week4",
+    "wandb_run_name": "ablation_lora_all_linear", "jsonl_log": "logs/train_log.jsonl"
+  }
+}

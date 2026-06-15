@@ -1,0 +1,130 @@
+{
+  "dataset": "vlnverse",
+  "purpose": "closed_loop_eval_selection",
+  "selection_note": "10 validation episodes and 10 train episodes sampled with unique scene_name values across all selected episodes.",
+  "split_seed": 42,
+  "validation_fraction": 0.1,
+  "sample_seed": 42,
+  "episodes": [
+    {
+      "split": "val",
+      "scene_name": "kujiale_0183",
+      "episode_number": "10_3",
+      "episode_id": "kujiale_0183_10_3"
+    },
+    {
+      "split": "val",
+      "scene_name": "kujiale_0188",
+      "episode_number": "29_3",
+      "episode_id": "kujiale_0188_29_3"
+    },
+    {
+      "split": "val",
+      "scene_name": "kujiale_0022",
+      "episode_number": "27_0",
+      "episode_id": "kujiale_0022_27_0"
+    },
+    {
+      "split": "val",
+      "scene_name": "kujiale_0018",
+      "episode_number": "0_0",
+      "episode_id": "kujiale_0018_0_0"
+    },
+    {
+      "split": "val",
+      "scene_name": "kujiale_0200",
+      "episode_number": "49_0",
+      "episode_id": "kujiale_0200_49_0"
+    },
+    {
+      "split": "val",
+      "scene_name": "kujiale_0127_fix",
+      "episode_number": "93_4",
+      "episode_id": "kujiale_0127_fix_93_4"
+    },
+    {
+      "split": "val",
+      "scene_name": "kujiale_0079",
+      "episode_number": "31_2",
+      "episode_id": "kujiale_0079_31_2"
+    },
+    {
+      "split": "val",
+      "scene_name": "kujiale_0051",
+      "episode_number": "29_4",
+      "episode_id": "kujiale_0051_29_4"
+    },
+    {
+      "split": "val",
+      "scene_name": "kujiale_0094",
+      "episode_number": "33_2",
+      "episode_id": "kujiale_0094_33_2"
+    },
+    {
+      "split": "val",
+      "scene_name": "kujiale_0068",
+      "episode_number": "7_3",
+      "episode_id": "kujiale_0068_7_3"
+    },
+    {
+      "split": "train",
+      "scene_name": "kujiale_0092",
+      "episode_number": "105_0",
+      "episode_id": "kujiale_0092_105_0"
+    },
+    {
+      "split": "train",
+      "scene_name": "kujiale_0062",
+      "episode_number": "19_3",
+      "episode_id": "kujiale_0062_19_3"
+    },
+    {
+      "split": "train",
+      "scene_name": "kujiale_0202",
+      "episode_number": "60_1",
+      "episode_id": "kujiale_0202_60_1"
+    },
+    {
+      "split": "train",
+      "scene_name": "kujiale_0148",
+      "episode_number": "9_2",
+      "episode_id": "kujiale_0148_9_2"
+    },
+    {
+      "split": "train",
+      "scene_name": "kujiale_0179",
+      "episode_number": "23_0",
+      "episode_id": "kujiale_0179_23_0"
+    },
+    {
+      "split": "train",
+      "scene_name": "kujiale_0172",
+      "episode_number": "22_1",
+      "episode_id": "kujiale_0172_22_1"
+    },
+    {
+      "split": "train",
+      "scene_name": "kujiale_0005",
+      "episode_number": "0_0",
+      "episode_id": "kujiale_0005_0_0"
+    },
+    {
+      "split": "train",
+      "scene_name": "kujiale_0184",
+      "episode_number": "8_0",
+      "episode_id": "kujiale_0184_8_0"
+    },
+    {
+      "split": "train",
+      "scene_name": "kujiale_0075",
+      "episode_number": "34_2",
+      "episode_id": "kujiale_0075_34_2"
+    },
+    {
+      "split": "train",
+      "scene_name": "kujiale_0191",
+      "episode_number": "15_0",
+      "episode_id": "kujiale_0191_15_0"
+    }
+  ]
+}

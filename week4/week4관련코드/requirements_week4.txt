@@ -1,0 +1,23 @@
+# Week 4 (VLN-VERSE Qwen3-VL LoRA) Python dependencies.
+# Install into the existing `goodnav` conda env. torch/transformers are ALREADY
+# present there (torch 2.5.1+cu118, transformers 5.9.0 with Qwen3-VL support);
+# do NOT reinstall/upgrade those unless necessary.
+#
+#   conda activate goodnav
+#   pip install -r week4/requirements_week4.txt
+#
+# Already present in goodnav (listed for reference, pinned loosely):
+#   torch==2.5.1+cu118
+#   transformers==5.9.0
+#   huggingface_hub>=1.16
+#   pillow, numpy, pandas
+#
+# Needed for Week 4 (NOT yet installed):
+peft>=0.13
+accelerate>=0.34
+pyarrow>=15          # pandas parquet engine for VLN-VERSE episode tables
+# Optional / nice-to-have:
+wandb>=0.17          # logging (JSONL fallback exists if absent)
+imageio[ffmpeg]>=2.34  # video frame reading fallback (if RGB stored as mp4)
+# decord            # faster video frame reads (optional; install if available)
+# qwen-vl-utils     # only if you prefer its vision-info helper; not required here
