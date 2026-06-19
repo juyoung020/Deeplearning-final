@@ -42,3 +42,8 @@ NVIDIA Isaac Sim과 IsaacLab을 활용하여 4족보행 로봇의 물리 기반 
 
 - NVIDIA Isaac Sim
 - IsaacLab
+
+## 모델 체크포인트
+
+- **모델2 (균형형)** — Qwen3-VL-2B + LoRA(q_proj·v_proj), 6 epoch (best: epoch 1), 회전·정지 클래스 재샘플링(balance_power 0.7): [Google Drive 다운로드](https://drive.google.com/file/d/1HZ5uGvO1A-6W_6pLetn_w-CSoFMPSW7N/view?usp=drive_link)
+  - 사용법: 베이스 모델 `Qwen/Qwen3-VL-2B-Instruct`에 위 LoRA 어댑터를 적용해 로드
